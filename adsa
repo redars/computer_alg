@@ -1,0 +1,118 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled1.ipynb",
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/redars/computer_alg/blob/main/adsa\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "yugqtJMkDch7"
+      },
+      "source": [
+        "class Rational:\r\n",
+        "\r\n",
+        "  def __init__(self, numerator,denumerator = 1):\r\n",
+        "    self.numerator = numerator\r\n",
+        "    self.denumerator = denumerator\r\n",
+        "\r\n",
+        "  def __str__(self):\r\n",
+        "    return (str(self.numerator)+ \"/\" + str(self.denumerator))\r\n",
+        "\r\n",
+        "  def normalize(self):\r\n",
+        "    if(self.denumerator<0):\r\n",
+        "      self.denumerator = self.denumerator*-1\r\n",
+        "    self.numerator = self.numerator+self.denumerator\r\n",
+        "    self.denumerator = self.numerator - self.denumerator\r\n",
+        "    self.numerator = self.numerator - self.denumerator\r\n",
+        "\r\n",
+        "  def __add__(self, other):\r\n",
+        "    return Rational(self.numerator*other.denumerator+other.numerator*self.denumerator,self.denumerator * other.denumerator)\r\n",
+        "\r\n",
+        "  def __sub__(self, other):\r\n",
+        "    return Rational(self.numerator*other.denumerator-other.numerator*self.denumerator,self.denumerator * other.denumerator)\r\n",
+        "\r\n",
+        "  def __mul__(self, other):\r\n",
+        "    return Rational(self.numerator*other.numerator,self.denumerator * other.denumerator)\r\n",
+        "\r\n",
+        "  def __truediv__(self,other):\r\n",
+        "    return  Rational(self.numerator*other.denumerator,self.denumerator * other.numerator)\r\n",
+        "\r\n",
+        "  def __pow__(self,other):\r\n",
+        "    return Rational(self.numerator**other,self.denumerator**other)\r\n",
+        "  def __radd__(self, other):\r\n",
+        "    return Rational(self.numerator*other.denumerator+other.numerator*self.denumerator,self.denumerator * other.denumerator)\r\n",
+        "\r\n",
+        "  def __rsub__(self, other):\r\n",
+        "    return Rational(self.numerator*other.denumerator-other.numerator*self.denumerator,self.denumerator * other.denumerator)\r\n",
+        "\r\n",
+        "  def __rmul__(self, other):\r\n",
+        "    return Rational(self.numerator*other.numerator,self.denumerator * other.denumerator)\r\n",
+        "\r\n",
+        "  def __rtruediv__(self,other):\r\n",
+        "    return  Rational(self.numerator*other.denumerator,self.denumerator * other.numerator)\r\n"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vXkSzChXHwac",
+        "outputId": "a76c2486-09f4-4f62-9d74-461fe8c8f418"
+      },
+      "source": [
+        "r1 = Rational(6,3)\r\n",
+        "print(r1)\r\n",
+        "r1.normalize()\r\n",
+        "print(\"r1: \"+str(r1))\r\n",
+        "r2 = Rational(1,2)\r\n",
+        "print(\"r2: \"+str(r2))\r\n",
+        "print(\"+: \"+str(r1+r2))\r\n",
+        "print(\"-: \"+str(r1-r2))\r\n",
+        "print(\"/: \"+str(r1/r2))\r\n",
+        "print(\"*: \"+str(r1*r2))\r\n",
+        "print(\"^2: \"+str(r1**2))"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "6/3\n",
+            "r1: 3/6\n",
+            "r2: 1/2\n",
+            "+: 12/12\n",
+            "-: 0/12\n",
+            "/: 6/6\n",
+            "*: 3/12\n",
+            "^2: 9/36\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    }
+  ]
+}
